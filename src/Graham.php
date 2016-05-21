@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Dascentral\Rma\Graham;
+namespace Dascentral\Rma;
 
 class Graham
 {
