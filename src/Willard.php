@@ -64,6 +64,38 @@ class Willard extends Carbon
     }
 
     /**
+     * Return an array of days for populating an HTML <select> element.
+     *
+     * @return array
+     */
+    protected function selectDays()
+    {
+        $days = [];
+        for ($i = 1; $i <= 31; $i++) {
+            $val = sprintf('%02d', $i);
+            $label = $i;
+            $days[$val] = $label;
+        }
+        return $days;
+    }
+
+    /**
+     * Return an array of months for populating an HTML <select> element.
+     *
+     * @return array
+     */
+    public static function selectMonths()
+    {
+        $months = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $val = sprintf('%02d', $i);
+            $label = Date('F', strtotime('2000-' . $val . '-01'));
+            $months[$val] = $label;
+        }
+        return $months;
+    }
+
+    /**
      * Determine the Sunday of the given week.
      *
      * @param  string $date
