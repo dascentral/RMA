@@ -29,9 +29,9 @@ class Willard extends Carbon
      * Determine the first sunday of the given year.
      *
      * @param  int $year
-     * @return void
+     * @return Isotope
      */
-    protected static function firstSundayOfYear($year)
+    public static function firstSundayOfYear($year)
     {
         $new_years_day = $year . '-01-01';
         $day_of_week = Date('N', strtotime($new_years_day));
@@ -84,7 +84,7 @@ class Willard extends Carbon
     {
         // determine the first sunday that is inclusive of all days in the given year
         $year = ($year) ? (int) $year : Date('Y');
-        $this_sunday = static::getFirstSundayOfYear($year);
+        $this_sunday = static::firstSundayOfYear($year);
         if ($this_sunday->format('m-d') != '01-01') {
             $this_sunday->subDays(7);
         }
