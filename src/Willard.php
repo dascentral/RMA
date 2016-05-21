@@ -26,14 +26,17 @@ class Willard extends Carbon
     }
 
     /**
-     * Determine the Sunday of the given week.
+     * Determine the first sunday of the given year.
      *
-     * @param  string $date
-     * @return Isotope
+     * @param  int $year
+     * @return void
      */
-    public static function sunday($date = null)
+    protected static function firstSundayOfYear($year)
     {
-        return (Date('N') == 7) ? self::parse(Date('Y-m-d')) : self::parse('last Sunday');
+        $new_years_day = $year . '-01-01';
+        $day_of_week = Date('N', strtotime($new_years_day));
+        $first_sunday = ($day_of_week == 7) ? self::parse($new_years_day) : self::parse($new_years_day)->addDays(7 - $day_of_week);
+        return $first_sunday;
     }
 
     /**
@@ -58,5 +61,59 @@ class Willard extends Carbon
         } else {
             return self::parse($date)->format('l, M j');
         }
+    }
+
+    /**
+     * Determine the Sunday of the given week.
+     *
+     * @param  string $date
+     * @return Isotope
+     */
+    public static function sunday($date = null)
+    {
+        return (Date('N') == 7) ? self::parse(Date('Y-m-d')) : self::parse('last Sunday');
+    }
+
+    /**
+     * Return an array of Sundays for the provided year.
+     *
+     * @param  int $year
+     * @return array
+     */
+    public static function sundays($year = null)
+    {
+        // determine the first sunday that is inclusive of all days in the given year
+        $year = ($year) ? (int) $year : Date('Y');
+        $this_sunday = static::getFirstSundayOfYear($year);
+        if ($this_sunday->format('m-d') != '01-01') {
+            $this_sunday->subDays(7);
+        }
+
+        // load up the array and return
+        $sundays = [];
+        while ((int) $this_sunday->format('Y') <= ($year)) {
+            $sundays[] = clone $this_sunday;
+            $this_sunday = $this_sunday->addDays(7);
+        }
+        return $sundays;
+    }
+
+    /**
+     * Return the provided number of weekdays.
+     *
+     * @param  int $num
+     * @return array
+     */
+    public static function weekdays($num = 1)
+    {
+        $days = [];
+        $day = self::parse(Date('Y-m-d'));
+        while (count($days) < $num) {
+            if (!$day->isWeekend()) {
+                $days[] = clone $day;
+            }
+            $day->addWeekday();
+        }
+        return $days;
     }
 }
