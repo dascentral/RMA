@@ -68,7 +68,7 @@ class Willard extends Carbon
      *
      * @return array
      */
-    protected function selectDays()
+    public static function selectDays()
     {
         $days = [];
         for ($i = 1; $i <= 31; $i++) {
