@@ -103,7 +103,17 @@ class Willard extends Carbon
      */
     public static function sunday($date = null)
     {
-        return (Date('N') == 7) ? self::parse(Date('Y-m-d')) : self::parse('last Sunday');
+        // create a class object
+        $date = ($date) ? self::parse($date) : self::parse(Date('Y-m-d'));
+
+        // return the date if it is already sunday
+        if ($date->format('l') == 'Sunday') {
+            return $date;
+        }
+
+        // calculate the sunday prior
+        $days_ahead_of_sunday = (int) $date->format('w');
+        return $date->subDays($days_ahead_of_sunday);
     }
 
     /**
