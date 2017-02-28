@@ -45,7 +45,7 @@ class Willard extends Carbon
      * @param  mixed $date
      * @return string
      */
-    public static function human($date)
+    public static function human($date, $format = 'l, M j')
     {
         $diff = self::parse(Date('Y-m-d'))->diffInDays(self::parse($date), false);
         if ($diff == 0) {
@@ -59,7 +59,7 @@ class Willard extends Carbon
         } elseif ($diff < 0 && $diff > -7) {
             return 'last ' . self::parse($date)->format('l');
         } else {
-            return self::parse($date)->format('l, M j');
+            return self::parse($date)->format($format);
         }
     }
 
