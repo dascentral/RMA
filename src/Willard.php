@@ -68,11 +68,11 @@ class Willard extends Carbon
      *
      * @return array
      */
-    public static function selectDays()
+    public static function selectDays($format = '%02d')
     {
         $days = [];
         for ($i = 1; $i <= 31; $i++) {
-            $val = sprintf('%02d', $i);
+            $val = sprintf($format, $i);
             $label = $i;
             $days[$val] = $label;
         }
@@ -84,11 +84,11 @@ class Willard extends Carbon
      *
      * @return array
      */
-    public static function selectMonths()
+    public static function selectMonths($format = '%02d')
     {
         $months = [];
         for ($i = 1; $i <= 12; $i++) {
-            $val = sprintf('%02d', $i);
+            $val = sprintf($format, $i);
             $label = Date('F', strtotime('2000-' . $val . '-01'));
             $months[$val] = $label;
         }
