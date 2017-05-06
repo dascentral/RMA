@@ -12,4 +12,4 @@ a few helper functions.
 
 
 ## Juliet
-**Coming soon!** A collection of utility functions to assist with formatting of names.
+A simple PHP API extension for formatting names.
