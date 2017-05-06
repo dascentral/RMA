@@ -45,7 +45,7 @@ class Willard extends Carbon
      * @param  mixed $date
      * @return string
      */
-    public static function human($date, $format = 'l, M j')
+    public static function human($date, $format = 'l, M j'): string
     {
         $diff = self::parse(Date('Y-m-d'))->diffInDays(self::parse($date), false);
         if ($diff == 0) {
@@ -66,9 +66,10 @@ class Willard extends Carbon
     /**
      * Return an array of days for populating an HTML <select> element.
      *
+     * @param  string $format
      * @return array
      */
-    public static function selectDays($format = '%02d')
+    public static function selectDays($format = '%02d'): array
     {
         $days = [];
         for ($i = 1; $i <= 31; $i++) {
@@ -82,9 +83,10 @@ class Willard extends Carbon
     /**
      * Return an array of months for populating an HTML <select> element.
      *
+     * @param  string $format
      * @return array
      */
-    public static function selectMonths($format = '%02d')
+    public static function selectMonths($format = '%02d'): array
     {
         $months = [];
         for ($i = 1; $i <= 12; $i++) {
@@ -122,7 +124,7 @@ class Willard extends Carbon
      * @param  int $year
      * @return array
      */
-    public static function sundays($year = null)
+    public static function sundays($year = null): array
     {
         // determine the first sunday that is inclusive of all days in the given year
         $year = ($year) ? (int) $year : Date('Y');
@@ -146,7 +148,7 @@ class Willard extends Carbon
      * @param  int $num
      * @return array
      */
-    public static function weekdays($num = 1)
+    public static function weekdays($num = 1): array
     {
         $days = [];
         $day = self::parse(Date('Y-m-d'));
