@@ -45,7 +45,7 @@ class Willard extends Carbon
      * @param  mixed $date
      * @return string
      */
-    public static function human($date, $format = 'l, M j')
+    public static function human($date, $format = 'l, M j'): string
     {
         $diff = self::parse(Date('Y-m-d'))->diffInDays(self::parse($date), false);
         if ($diff == 0) {
@@ -64,11 +64,45 @@ class Willard extends Carbon
     }
 
     /**
+     * Create a human readable representation of a typical "last_updated" DATETIME value.
+     *
+     * @param  mixed $date
+     * @param  boolean $withTime
+     * @return string
+     */
+    protected function lastUpdated($date, $withTime = true): string
+    {
+        $date = Willard::parse($date);
+        $days = Willard::parse(Date('Y-m-d'))->diffInDays($date);
+
+        // determine the message
+        if ($days == 0) {
+            $msg = 'Today';
+        } elseif ($days == 1) {
+            $msg = 'Yesterday';
+        } elseif ($days > 1 && $days < 7) {
+            $msg = 'last ' . Willard::parse($date)->format('l');
+        } elseif ($days >= 7 && $days < 30) {
+            $msg = $days . ' days ago';
+            $withTime = false;
+        } elseif ($days >= 30 && $days < 365) {
+            $msg = Willard::parse(Date('Y-m-d'))->diffInMonths($date) . ' months ago';
+            $withTime = false;
+        } else {
+            $msg = Willard::parse(Date('Y-m-d'))->diffInYears($date) . ' years ago';
+            $withTime = false;
+        }
+
+        return ($withTime) ? $msg . ' at ' . $date->format('g:ia') : $msg;
+    }
+
+    /**
      * Return an array of days for populating an HTML <select> element.
      *
+     * @param  string $format
      * @return array
      */
-    public static function selectDays($format = '%02d')
+    public static function selectDays($format = '%02d'): array
     {
         $days = [];
         for ($i = 1; $i <= 31; $i++) {
@@ -82,9 +116,10 @@ class Willard extends Carbon
     /**
      * Return an array of months for populating an HTML <select> element.
      *
+     * @param  string $format
      * @return array
      */
-    public static function selectMonths($format = '%02d')
+    public static function selectMonths($format = '%02d'): array
     {
         $months = [];
         for ($i = 1; $i <= 12; $i++) {
@@ -122,7 +157,7 @@ class Willard extends Carbon
      * @param  int $year
      * @return array
      */
-    public static function sundays($year = null)
+    public static function sundays($year = null): array
     {
         // determine the first sunday that is inclusive of all days in the given year
         $year = ($year) ? (int) $year : Date('Y');
@@ -146,7 +181,7 @@ class Willard extends Carbon
      * @param  int $num
      * @return array
      */
-    public static function weekdays($num = 1)
+    public static function weekdays($num = 1): array
     {
         $days = [];
         $day = self::parse(Date('Y-m-d'));
