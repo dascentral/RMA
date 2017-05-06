@@ -64,6 +64,39 @@ class Willard extends Carbon
     }
 
     /**
+     * Create a human readable representation of a typical "last_updated" DATETIME value.
+     *
+     * @param  mixed $date
+     * @param  boolean $withTime
+     * @return string
+     */
+    protected function lastUpdated($date, $withTime = true): string
+    {
+        $date = Willard::parse($date);
+        $days = Willard::parse(Date('Y-m-d'))->diffInDays($date);
+
+        // determine the message
+        if ($days == 0) {
+            $msg = 'Today';
+        } elseif ($days == 1) {
+            $msg = 'Yesterday';
+        } elseif ($days > 1 && $days < 7) {
+            $msg = 'last ' . Willard::parse($date)->format('l');
+        } elseif ($days >= 7 && $days < 30) {
+            $msg = $days . ' days ago';
+            $withTime = false;
+        } elseif ($days >= 30 && $days < 365) {
+            $msg = Willard::parse(Date('Y-m-d'))->diffInMonths($date) . ' months ago';
+            $withTime = false;
+        } else {
+            $msg = Willard::parse(Date('Y-m-d'))->diffInYears($date) . ' years ago';
+            $withTime = false;
+        }
+
+        return ($withTime) ? $msg . ' at ' . $date->format('g:ia') : $msg;
+    }
+
+    /**
      * Return an array of days for populating an HTML <select> element.
      *
      * @param  string $format
