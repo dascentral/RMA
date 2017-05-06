@@ -70,7 +70,7 @@ class Willard extends Carbon
      * @param  boolean $withTime
      * @return string
      */
-    public function lastUpdated($date, $withTime = true): string
+    public static function lastUpdated($date, $withTime = true): string
     {
         $date = Willard::parse($date);
         $days = Willard::parse(Date('Y-m-d'))->diffInDays($date);
