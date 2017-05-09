@@ -72,28 +72,30 @@ class Willard extends Carbon
      */
     public static function lastUpdated($date, $withTime = true): string
     {
-        $date = Willard::parse($date);
-        $days = Willard::parse(Date('Y-m-d'))->diffInDays($date);
+        $objDate = self::parse($date);
+        $date = self::parse($objDate)->format('Y-m-d');
+        $days = self::parse(Date('Y-m-d'))->diffInDays(self::parse($date));
 
-        // determine the message
         if ($days == 0) {
             $msg = 'Today';
         } elseif ($days == 1) {
             $msg = 'Yesterday';
         } elseif ($days > 1 && $days < 7) {
-            $msg = 'last ' . Willard::parse($date)->format('l');
-        } elseif ($days >= 7 && $days < 30) {
+            $msg = 'last ' . $objDate->format('l');
+        } elseif ($days >= 7 && $days < 32) {
             $msg = $days . ' days ago';
             $withTime = false;
-        } elseif ($days >= 30 && $days < 365) {
-            $msg = Willard::parse(Date('Y-m-d'))->diffInMonths($date) . ' months ago';
+        } elseif ($days >= 32 && $days < 365) {
+            $months = self::parse(Date('Y-m-d'))->diffInMonths($objDate);
+            $msg = $months . (($months > 1) ? ' months ' : ' month ') . 'ago';
             $withTime = false;
         } else {
-            $msg = Willard::parse(Date('Y-m-d'))->diffInYears($date) . ' years ago';
+            $years = self::parse(Date('Y-m-d'))->diffInYears($objDate);
+            $msg = $years . (($years > 1) ? ' years ' : ' year ') . 'ago';
             $withTime = false;
         }
 
-        return ($withTime) ? $msg . ' at ' . $date->format('g:ia') : $msg;
+        return ($withTime) ? $msg . ' at ' . $objDate->format('g:ia') : $msg;
     }
 
     /**
