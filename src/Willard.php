@@ -81,7 +81,7 @@ class Willard extends Carbon
         } elseif ($days == 1) {
             $msg = 'Yesterday';
         } elseif ($days > 1 && $days < 7) {
-            $msg = 'last ' . $objDate->format('l');
+            $msg = $objDate->format('l');
         } elseif ($days >= 7 && $days < 32) {
             $msg = $days . ' days ago';
             $withTime = false;
