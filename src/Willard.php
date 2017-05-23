@@ -31,8 +31,9 @@ class Willard extends Carbon
      * @param  int $year
      * @return Isotope
      */
-    public static function firstSundayOfYear($year)
+    public static function firstSundayOfYear($year = null)
     {
+        $year = ($year) ?: Date('Y');
         $new_years_day = $year . '-01-01';
         $day_of_week = Date('N', strtotime($new_years_day));
         $first_sunday = ($day_of_week == 7) ? self::parse($new_years_day) : self::parse($new_years_day)->addDays(7 - $day_of_week);
@@ -175,6 +176,29 @@ class Willard extends Carbon
             $this_sunday = $this_sunday->addDays(7);
         }
         return $sundays;
+    }
+
+    /**
+     * Convert the provided date into an array that describves the week containing the given date.
+     *
+     * @param  string $date
+     * @return array
+     */
+    public static function week($date)
+    {
+        $sunday = self::sunday($date);
+        $current = ($sunday->eq(self::sunday())) ? 1 : 0;
+        $future = ($sunday->gt(self::now())) ? 1 : 0;
+        $past = (!$current && !$future) ? 1 : 0;
+
+        return [
+            'week' => $sunday->format('Y-m-d'),
+            'past' => $past,
+            'current' => $current,
+            'future' => $future,
+            'prev_week' => $sunday->copy()->subDays(7)->format('Y-m-d'),
+            'next_week' => $sunday->copy()->addDays(7)->format('Y-m-d'),
+        ];
     }
 
     /**
