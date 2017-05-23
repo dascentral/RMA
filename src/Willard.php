@@ -179,6 +179,29 @@ class Willard extends Carbon
     }
 
     /**
+     * Convert the provided date into an array that describves the week containing the given date.
+     *
+     * @param  string $date
+     * @return array
+     */
+    public static function week($date)
+    {
+        $sunday = self::sunday($date);
+        $current = ($sunday->eq(self::sunday())) ? 1 : 0;
+        $future = ($sunday->gt(self::now())) ? 1 : 0;
+        $past = (!$current && !$future) ? 1 : 0;
+
+        return [
+            'week' => $sunday->format('Y-m-d'),
+            'past' => $past,
+            'current' => $current,
+            'future' => $future,
+            'prev_week' => $sunday->copy()->subDays(7)->format('Y-m-d'),
+            'next_week' => $sunday->copy()->addDays(7)->format('Y-m-d'),
+        ];
+    }
+
+    /**
      * Return the provided number of weekdays.
      *
      * @param  int $num
