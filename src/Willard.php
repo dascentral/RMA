@@ -31,8 +31,9 @@ class Willard extends Carbon
      * @param  int $year
      * @return Isotope
      */
-    public static function firstSundayOfYear($year)
+    public static function firstSundayOfYear($year = null)
     {
+        $year = ($year) ?: Date('Y');
         $new_years_day = $year . '-01-01';
         $day_of_week = Date('N', strtotime($new_years_day));
         $first_sunday = ($day_of_week == 7) ? self::parse($new_years_day) : self::parse($new_years_day)->addDays(7 - $day_of_week);
