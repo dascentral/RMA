@@ -192,7 +192,7 @@ class Willard extends Carbon
         $past = (!$current && !$future) ? 1 : 0;
 
         return [
-            'week' => $sunday->format('Y-m-d'),
+            'sunday' => $sunday->format('Y-m-d'),
             'past' => $past,
             'current' => $current,
             'future' => $future,
