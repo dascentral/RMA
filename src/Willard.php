@@ -78,9 +78,9 @@ class Willard extends Carbon
         $days = self::parse(Date('Y-m-d'))->diffInDays(self::parse($date));
 
         if ($days == 0) {
-            $msg = 'Today';
+            $msg = 'today';
         } elseif ($days == 1) {
-            $msg = 'Yesterday';
+            $msg = 'yesterday';
         } elseif ($days > 1 && $days < 7) {
             $msg = $objDate->format('l');
         } elseif ($days >= 7 && $days < 32) {
