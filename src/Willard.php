@@ -33,11 +33,27 @@ class Willard extends Carbon
      */
     public static function firstSundayOfYear($year = null)
     {
-        $year = ($year) ?: Date('Y');
+        $year = $year ?: Date('Y');
         $new_years_day = $year . '-01-01';
         $day_of_week = Date('N', strtotime($new_years_day));
         $first_sunday = ($day_of_week == 7) ? self::parse($new_years_day) : self::parse($new_years_day)->addDays(7 - $day_of_week);
         return $first_sunday;
+    }
+
+    /**
+     * Determine the first week of the given year.
+     *
+     * @param  int $year
+     * @return Isotope
+     */
+    public static function firstWeekOfYear($year = null)
+    {
+        $year = $year ?: Date('Y');
+        $start_date = self::firstSundayOfYear($year);
+        if ($start_date->format('j') != '1') {
+            $start_date->subDays(7);
+        }
+        return $start_date;
     }
 
     /**
