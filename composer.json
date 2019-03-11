@@ -1,45 +1,45 @@
 {
-  "name": "dascentral/rma",
-  "type": "library",
-  "description": "A collection of utilities that can be leveraged within PHP-based projects.",
-  "keywords": [
-    "date",
-    "datetime",
-    "format",
-    "formatting",
-    "names",
-    "phone",
-    "phone numbers",
-    "time"
-  ],
-  "homepage": "https://github.com/dascentral/RMA",
-  "support": {
-    "issues": "https://github.com/dascentral/RMA/issues",
-    "source": "https://github.com/dascentral/RMA"
-  },
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Douglas Smith",
-      "email": "douglas@dascentral.com",
-      "homepage": "http://www.dascentral.com"
+    "name": "dascentral/rma",
+    "type": "library",
+    "description": "A collection of utilities that can be leveraged within PHP-based projects.",
+    "keywords": [
+        "date",
+        "datetime",
+        "format",
+        "formatting",
+        "names",
+        "phone",
+        "phone numbers",
+        "time"
+    ],
+    "homepage": "https://github.com/dascentral/RMA",
+    "support": {
+        "issues": "https://github.com/dascentral/RMA/issues",
+        "source": "https://github.com/dascentral/RMA"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Douglas Smith",
+            "email": "douglas@dascentral.com",
+            "homepage": "https://dascentral.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "nesbot/carbon": "~2.15"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dascentral\\Rma\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     }
-  ],
-  "require": {
-    "php": ">=7.0.0",
-    "nesbot/carbon": "~1.20"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^7.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Dascentral\\Rma\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "tests/"
-    }
-  }
 }

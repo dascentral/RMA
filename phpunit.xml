@@ -9,6 +9,12 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
+        <testsuite name="Graham">
+            <directory suffix="Test.php">./tests/Graham</directory>
+        </testsuite>
+        <testsuite name="Juliet">
+            <directory suffix="Test.php">./tests/Juliet</directory>
+        </testsuite>
         <testsuite name="Willard">
             <directory suffix="Test.php">./tests/Willard</directory>
         </testsuite>

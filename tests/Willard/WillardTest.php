@@ -3,7 +3,7 @@
 use Dascentral\Rma\Willard;
 use PHPUnit\Framework\TestCase;
 
-class ZttpTest extends TestCase
+class WillardTest extends TestCase
 {
     /** @test */
     public function it_calculates_the_first_sunday_of_the_year()
