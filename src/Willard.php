@@ -150,9 +150,7 @@ class Willard extends Carbon
     }
 
     /**
-     * Determine the Sunday of the given week.
-     *
-     * DEPRECATED: Functionality replicated by startOfWeek() from the Carbon library.
+     * Helper method that determines the Sunday of the given week.
      *
      * @param  string $date
      * @return Isotope
