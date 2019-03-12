@@ -152,10 +152,10 @@ class Willard extends Carbon
     public static function sunday($date = null)
     {
         if ($date) {
-            return Carbon::parse($date)->startOfWeek(Carbon::SUNDAY)->format('Y-m-d');
+            return Carbon::parse($date)->startOfWeek(Carbon::SUNDAY);
         }
 
-        return Carbon::now()->startOfWeek(Carbon::SUNDAY)->format('Y-m-d');
+        return Carbon::now()->startOfWeek(Carbon::SUNDAY);
     }
 
     /**
