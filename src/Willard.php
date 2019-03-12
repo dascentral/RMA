@@ -195,12 +195,12 @@ class Willard extends Carbon
     }
 
     /**
-     * Convert the provided date into an array that describves the week containing the given date.
+     * Convert the provided date into an array that describes the week containing the given date.
      *
      * @param  string $date
      * @return array
      */
-    public static function week($date)
+    public static function weekDetails($date)
     {
         $sunday = self::sunday($date);
         $current = ($sunday->eq(self::sunday())) ? 1 : 0;
