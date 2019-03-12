@@ -8,6 +8,9 @@ class WillardTest extends TestCase
     /** @test */
     public function it_calculates_the_first_sunday_of_the_year()
     {
+        $sunday = Willard::firstSundayOfYear(2019);
+        $this->assertEquals('2019-01-06', $sunday->format('Y-m-d'));
+
         $sunday = Willard::firstSundayOfYear(2018);
         $this->assertEquals('2018-01-07', $sunday->format('Y-m-d'));
 
