@@ -21,6 +21,9 @@ class WillardTest extends TestCase
     /** @test */
     public function it_calculates_the_first_week_of_the_year()
     {
+        $sunday = Willard::firstWeekOfYear(2019);
+        $this->assertEquals('2018-12-30', $sunday->format('Y-m-d'));
+
         $sunday = Willard::firstWeekOfYear(2018);
         $this->assertEquals('2017-12-31', $sunday->format('Y-m-d'));
 
