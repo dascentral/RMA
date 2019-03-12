@@ -46,12 +46,8 @@ class Willard extends Carbon
      */
     public static function firstWeekOfYear($year = null)
     {
-        $year = $year ?: Date('Y');
-        $start_date = self::firstSundayOfYear($year);
-        if ($start_date->format('j') != '1') {
-            $start_date->subDays(7);
-        }
-        return $start_date;
+        $year = $year ? (int) $year : Date('Y');
+        return Carbon::parse($year . '-01-01')->startOfWeek(Carbon::SUNDAY);
     }
 
     /**
