@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Dascentral\Rma\Willard;
 use PHPUnit\Framework\TestCase;
 
@@ -48,5 +49,28 @@ class WillardTest extends TestCase
         // Last day name
 
         // ELSE
+    }
+
+    /** @test */
+    public function it_correctly_calculates_sunday()
+    {
+        $sunday = Carbon::now()->startOfWeek(Carbon::SUNDAY);
+        $this->assertEquals($sunday, Willard::sunday());
+
+        $this->assertEquals('2019-02-24', Willard::sunday('2019-02-24')->format('Y-m-d'));
+        $this->assertEquals('2019-02-24', Willard::sunday('2019-02-25')->format('Y-m-d'));
+        $this->assertEquals('2019-02-24', Willard::sunday('2019-02-26')->format('Y-m-d'));
+        $this->assertEquals('2019-02-24', Willard::sunday('2019-02-27')->format('Y-m-d'));
+        $this->assertEquals('2019-02-24', Willard::sunday('2019-02-28')->format('Y-m-d'));
+        $this->assertEquals('2019-02-24', Willard::sunday('2019-03-01')->format('Y-m-d'));
+        $this->assertEquals('2019-02-24', Willard::sunday('2019-03-02')->format('Y-m-d'));
+
+        $this->assertEquals('2019-03-10', Willard::sunday('2019-03-10')->format('Y-m-d'));
+        $this->assertEquals('2019-03-10', Willard::sunday('2019-03-11')->format('Y-m-d'));
+        $this->assertEquals('2019-03-10', Willard::sunday('2019-03-12')->format('Y-m-d'));
+        $this->assertEquals('2019-03-10', Willard::sunday('2019-03-13')->format('Y-m-d'));
+        $this->assertEquals('2019-03-10', Willard::sunday('2019-03-14')->format('Y-m-d'));
+        $this->assertEquals('2019-03-10', Willard::sunday('2019-03-15')->format('Y-m-d'));
+        $this->assertEquals('2019-03-10', Willard::sunday('2019-03-16')->format('Y-m-d'));
     }
 }
