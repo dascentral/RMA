@@ -12,7 +12,7 @@ class GrahamTest extends TestCase
     }
 
     /** @test */
-    public function it_formats_us_phone_numbers_with_a_plus_one_country_code()
+    public function it_formats_phone_numbers_with_a_plus_one_country_code()
     {
         $this->assertEquals('(703) 555-1234', Graham::format('+1 703 555 1234'));
         $this->assertEquals('+1703 555 1234', Graham::format('+1703 555 1234'));
