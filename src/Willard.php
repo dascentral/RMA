@@ -188,7 +188,7 @@ class Willard extends Carbon
      * @param  string $date
      * @return array
      */
-    public static function weekDetails($date)
+    public static function weekDetails($date): array
     {
         $sunday = self::sunday($date);
         $current = ($sunday->eq(self::sunday())) ? 1 : 0;
