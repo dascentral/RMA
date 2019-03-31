@@ -33,11 +33,9 @@ class Willard extends Carbon
      */
     public static function firstSundayOfYear($year = null)
     {
-        $year = $year ?: Date('Y');
-        $new_years_day = $year . '-01-01';
-        $day_of_week = Date('N', strtotime($new_years_day));
-        $first_sunday = ($day_of_week == 7) ? self::parse($new_years_day) : self::parse($new_years_day)->addDays(7 - $day_of_week);
-        return $first_sunday;
+        $year = $year ? (int) $year : Date('Y');
+        $sunday = Carbon::parse($year . '-01-01')->startOfWeek(Carbon::SUNDAY);
+        return ((int) $sunday->format('Y') === $year) ? $sunday : $sunday->addDays(7);
     }
 
     /**
@@ -48,12 +46,8 @@ class Willard extends Carbon
      */
     public static function firstWeekOfYear($year = null)
     {
-        $year = $year ?: Date('Y');
-        $start_date = self::firstSundayOfYear($year);
-        if ($start_date->format('j') != '1') {
-            $start_date->subDays(7);
-        }
-        return $start_date;
+        $year = $year ? (int) $year : Date('Y');
+        return Carbon::parse($year . '-01-01')->startOfWeek(Carbon::SUNDAY);
     }
 
     /**
@@ -150,9 +144,7 @@ class Willard extends Carbon
     }
 
     /**
-     * Determine the Sunday of the given week.
-     *
-     * DEPRECATED: Functionality replicated by startOfWeek() from the Carbon library.
+     * Helper method that determines the Sunday of the given week.
      *
      * @param  string $date
      * @return Isotope
@@ -160,10 +152,10 @@ class Willard extends Carbon
     public static function sunday($date = null)
     {
         if ($date) {
-            return Carbon::parse($date)->startOfWeek(Carbon::SUNDAY)->format('Y-m-d');
+            return Carbon::parse($date)->startOfWeek(Carbon::SUNDAY);
         }
 
-        return Carbon::now()->startOfWeek(Carbon::SUNDAY)->format('Y-m-d');
+        return Carbon::now()->startOfWeek(Carbon::SUNDAY);
     }
 
     /**
@@ -196,7 +188,7 @@ class Willard extends Carbon
      * @param  string $date
      * @return array
      */
-    public static function weekDetails($date)
+    public static function weekDetails($date): array
     {
         $sunday = self::sunday($date);
         $current = ($sunday->eq(self::sunday())) ? 1 : 0;
