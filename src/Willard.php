@@ -110,6 +110,18 @@ class Willard extends Carbon
     }
 
     /**
+     * Create a Carbon object for 12:00am on the provided date.
+     *
+     * @param  mixed $date
+     * @return Isotope
+     */
+    public static function midnight($date = null)
+    {
+        $date = $date ? Carbon::parse($date) : Carbon::now();
+        return Carbon::createMidnightDate($date->format('Y'), $date->format('n'), $date->format('j'));
+    }
+
+    /**
      * Return an array of days for populating an HTML <select> element.
      *
      * @param  string $format
