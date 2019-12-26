@@ -221,12 +221,14 @@ class Willard extends Carbon
      * Return the provided number of weekdays.
      *
      * @param  int $num
+     * @param  mixed $start
      * @return array
      */
-    public static function weekdays($num = 1): array
+    public static function weekdays($num = 1, $start = null): array
     {
+        $day = $start ? self::parse($start) : self::now();
+
         $days = [];
-        $day = self::parse(Date('Y-m-d'));
         while (count($days) < $num) {
             if (!$day->isWeekend()) {
                 $days[] = clone $day;
