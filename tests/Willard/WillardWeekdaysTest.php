@@ -16,10 +16,12 @@ class WillardWeekdaysTest extends TestCase
     /** @test */
     public function it_returns_the_start_of_day_for_each_weekday()
     {
-        $weekdays = Willard::weekdays(5);
-        foreach ($weekdays as $weekday) {
-            $compare = '00:00:00';
-            $this->assertEquals($compare, $weekday->format('H:i:s'));
-        }
+        $compare = '00:00:00';
+
+        $weekdays = Willard::weekdays();
+        $this->assertEquals($compare, $weekdays[0]->format('H:i:s'));
+
+        $weekdays = Willard::weekdays(1, Willard::sunday());
+        $this->assertEquals($compare, $weekdays[0]->format('H:i:s'));
     }
 }
