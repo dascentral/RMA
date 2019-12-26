@@ -226,7 +226,7 @@ class Willard extends Carbon
      */
     public static function weekdays($num = 1, $start = null): array
     {
-        $day = $start ? self::parse($start) : self::midnight();
+        $day = $start ? self::parse($start) : self::now()->startOfDay();
 
         $days = [];
         while (count($days) < $num) {

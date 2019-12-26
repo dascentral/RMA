@@ -14,7 +14,7 @@ class WillardWeekdaysTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_midnight_for_each_weekday()
+    public function it_returns_the_start_of_day_for_each_weekday()
     {
         $weekdays = Willard::weekdays(5);
         foreach ($weekdays as $weekday) {
