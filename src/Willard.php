@@ -195,6 +195,31 @@ class Willard extends Carbon
     }
 
     /**
+     * Return an array of times based upon the provided parameters.
+     *
+     * @param  \Carbon\Carbon|string $start
+     * @param  \Carbon\Carbon|string $end
+     * @param  int $seconds
+     * @param  string $label_format
+     * @return array
+     */
+    public static function times($start, $end, $seconds = 900, $label_format = 'g:ia')
+    {
+        $times = [];
+        $time = Carbon::parse($start);
+        $end = Carbon::parse($end);
+        while ($time->lte($end)) {
+            $times[] = [
+                'value' => $time->format('H:i'),
+                'label' => $time->format($label_format),
+            ];
+            $time = $time->addSeconds($seconds);
+        }
+
+        return $times;
+    }
+
+    /**
      * Convert the provided date into an array that describes the week containing the given date.
      *
      * @param  string $date
