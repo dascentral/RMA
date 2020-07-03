@@ -20,7 +20,7 @@ class Graham
      */
     public function __construct()
     {
-        // no actions at the moment
+        //
     }
 
     /**
