@@ -40,6 +40,19 @@ class Dorothy
      * @param int|float $value
      * @param int|null $multiple
      */
+    public static function roundToNearest($value, $multiple): int
+    {
+        return round($value / $multiple) * $multiple;
+
+        return floor(floor($value) / $multiple) * $multiple;
+    }
+
+    /**
+     * Round to the nearest multiple.
+     *
+     * @param int|float $value
+     * @param int|null $multiple
+     */
     public static function roundUpToNearest($value, $multiple): int
     {
         return (round($value) % $multiple === 0)

@@ -20,4 +20,5 @@ A simple PHP API extension for formatting names.
 
 A simple PHP API extension for doing math.
 
-This class is named after [Dorothy Johnson Vaughan](https://en.wikipedia.org/wiki/Dorothy_Vaughan) who was an American mathematician and human  computer who worked for the National Advisory Committee for Aeronautics, and NASA, at Langley Research Center in Hampton, Virginia. Her work at NASA was celebrated within the film [Hidden Figures](https://www.imdb.com/title/tt4846340/).
+This class is named after [Dorothy Johnson Vaughan](https://en.wikipedia.org/wiki/Dorothy_Vaughan) who was an American mathematician and human computer who worked for the National Advisory Committee for Aeronautics, and NASA, at Langley Research Center in Hampton, Virginia. Her work at NASA was celebrated within the film [Hidden Figures](https://www.imdb.com/title/tt4846340/).
+
