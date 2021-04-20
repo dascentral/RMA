@@ -189,7 +189,7 @@ class Willard extends Carbon
     public static function selectYears($youngest = 0, $oldest = 120): array
     {
         $years = [];
-        for ($i = Date('Y') - $youngest; $i <= Date('Y') - $oldest; $i--) {
+        for ($i = Date('Y') - $youngest; $i >= Date('Y') - $oldest; $i--) {
             $years[$i] = $i;
         }
         return $years;
