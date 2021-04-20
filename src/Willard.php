@@ -178,6 +178,24 @@ class Willard extends Carbon
     }
 
     /**
+     * Return an array of years for populating an HTML <select> element.
+     *
+     * We are going to assume that the oldest person filling out your form is 120 years old.
+     *
+     * @param  int $youngest
+     * @param  int $oldest
+     * @return array
+     */
+    public static function selectYears($youngest = 0, $oldest = 120): array
+    {
+        $years = [];
+        for ($i = Date('Y') - $youngest; $i <= Date('Y') - $oldest; $i--) {
+            $years[$i] = $i;
+        }
+        return $years;
+    }
+
+    /**
      * Helper method that determines the Sunday of the given week.
      *
      * @param  string $date
