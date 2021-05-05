@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Dascentral\Rma\Willard;
 use PHPUnit\Framework\TestCase;
 
@@ -9,7 +10,9 @@ class AgeTest extends TestCase
     public function it_accurately_calculates_age_in_years()
     {
         $expected = 40;
-        $actual = Willard::age(Date('n'), Date('j'), Date('Y') - $expected);
+        $date = Carbon::create(Date('Y') - $expected, Date('n'), Date('j'));
+
+        $actual = Willard::age($date);
         $this->assertEquals($expected, $actual);
     }
 }
