@@ -28,16 +28,11 @@ class Willard extends Carbon
     /**
      * Calculate the age given the month, day, and year.
      *
-     * @param int $month
-     * @param int $day
-     * @param int $year
-     * @param string step
+     * @param CarbonInterface $date
      * @return int
      */
-    public static function age($month, $day, $year, $step = null)
+    public static function age($date, $step = null)
     {
-        $date = Carbon::create($year, $month, $day, 0, 0, 0);
-
         if ($step === 'days') {
             return Carbon::now()->diffInDays($date);
         } elseif ($step === 'months') {
