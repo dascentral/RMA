@@ -48,6 +48,22 @@ class Willard extends Carbon
     }
 
     /**
+     * Calculate the age given the month, day, and year.
+     *
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @param string step
+     * @return int
+     */
+    public static function ageFromDate($year, $month, $day, $step = null)
+    {
+        $date = Carbon::create($year, $month, $day);
+
+        return self::age($date, $step);
+    }
+
+    /**
      * Determine the first sunday of the given year.
      *
      * @param  int $year
