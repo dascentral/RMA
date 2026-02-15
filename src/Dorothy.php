@@ -26,8 +26,8 @@ class Dorothy
     /**
      * Round down to the nearest multiple.
      *
-     * @param int|float $value
-     * @param int|null $multiple
+     * @param  int|float  $value
+     * @param  int|null  $multiple
      */
     public static function roundDownToNearest($value, $multiple): int
     {
@@ -37,8 +37,8 @@ class Dorothy
     /**
      * Round to the nearest multiple.
      *
-     * @param int|float $value
-     * @param int|null $multiple
+     * @param  int|float  $value
+     * @param  int|null  $multiple
      */
     public static function roundToNearest($value, $multiple): int
     {
@@ -50,8 +50,8 @@ class Dorothy
     /**
      * Round to the nearest multiple.
      *
-     * @param int|float $value
-     * @param int|null $multiple
+     * @param  int|float  $value
+     * @param  int|null  $multiple
      */
     public static function roundUpToNearest($value, $multiple): int
     {

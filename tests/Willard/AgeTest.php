@@ -11,7 +11,7 @@ class AgeTest extends TestCase
     public function it_accurately_calculates_age_in_years()
     {
         $expected = 40;
-        $date = Carbon::create(Date('Y') - $expected, Date('n'), Date('j'));
+        $date = Carbon::create(date('Y') - $expected, date('n'), date('j'));
 
         $actual = Willard::age($date);
         $this->assertEquals($expected, $actual);

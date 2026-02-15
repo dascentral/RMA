@@ -26,7 +26,7 @@ class Graham
     /**
      * Format the phone number in our very special and customized manner.
      *
-     * @param  string $date
+     * @param  string  $date
      * @return string
      */
     public static function format($phone)
@@ -39,7 +39,7 @@ class Graham
         // US numbers will have 10 digits. Otherwise, leave alone.
         if (preg_match_all('/[0-9]/', $phone) == 10) {
             $phone = preg_replace('/[^0-9]/', '', $phone);
-            $phone = '(' . substr($phone, 0, 3) . ') ' . substr($phone, 3, 3) . '-' . substr($phone, 6);
+            $phone = '('.substr($phone, 0, 3).') '.substr($phone, 3, 3).'-'.substr($phone, 6);
         }
 
         // Empty phone values should be made null

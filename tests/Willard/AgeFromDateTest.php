@@ -10,7 +10,7 @@ class AgeFromDateTest extends TestCase
     public function it_accurately_calculates_age_in_years()
     {
         $expected = 40;
-        $actual = Willard::ageFromDate(Date('Y') - $expected, Date('n'), Date('j'));
+        $actual = Willard::ageFromDate(date('Y') - $expected, date('n'), date('j'));
         $this->assertEquals($expected, $actual);
     }
 }

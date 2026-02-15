@@ -36,7 +36,7 @@ class WillardTest extends TestCase
     #[Test]
     public function it_calculates_my_version_of_diff_for_humans()
     {
-        $date = Date('Y-m-d');
+        $date = date('Y-m-d');
         $this->assertEquals('Today', Willard::human($date));
 
         $date = Carbon::now()->addDays(1)->format('Y-m-d');

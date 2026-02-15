@@ -28,7 +28,7 @@ class Willard extends Carbon
     /**
      * Calculate the age given the month, day, and year.
      *
-     * @param CarbonInterface $date
+     * @param  CarbonInterface  $date
      * @return int
      */
     public static function age($date, $step = null)
@@ -45,9 +45,9 @@ class Willard extends Carbon
     /**
      * Calculate the age given the month, day, and year.
      *
-     * @param int $year
-     * @param int $month
-     * @param int $day
+     * @param  int  $year
+     * @param  int  $month
+     * @param  int  $day
      * @param string step
      * @return int
      */
@@ -61,37 +61,38 @@ class Willard extends Carbon
     /**
      * Determine the first sunday of the given year.
      *
-     * @param  int $year
+     * @param  int  $year
      * @return Isotope
      */
     public static function firstSundayOfYear($year = null)
     {
-        $year = $year ? (int) $year : Date('Y');
-        $sunday = Carbon::parse($year . '-01-01')->startOfWeek(Carbon::SUNDAY);
+        $year = $year ? (int) $year : date('Y');
+        $sunday = Carbon::parse($year.'-01-01')->startOfWeek(Carbon::SUNDAY);
+
         return ((int) $sunday->format('Y') === $year) ? $sunday : $sunday->addDays(7);
     }
 
     /**
      * Determine the first week of the given year.
      *
-     * @param  int $year
+     * @param  int  $year
      * @return Isotope
      */
     public static function firstWeekOfYear($year = null)
     {
-        $year = $year ? (int) $year : Date('Y');
-        return Carbon::parse($year . '-01-01')->startOfWeek(Carbon::SUNDAY);
+        $year = $year ? (int) $year : date('Y');
+
+        return Carbon::parse($year.'-01-01')->startOfWeek(Carbon::SUNDAY);
     }
 
     /**
      * Convert the provided date into a custom human readable form.
      *
-     * @param  mixed $date
-     * @return string
+     * @param  mixed  $date
      */
     public static function human($date, $format = 'l, M j'): string
     {
-        $diff = self::parse(Date('Y-m-d'))->diffInDays(self::parse($date), false);
+        $diff = self::parse(date('Y-m-d'))->diffInDays(self::parse($date), false);
         if ($diff == 0) {
             return 'Today';
         } elseif ($diff == 1) {
@@ -101,7 +102,7 @@ class Willard extends Carbon
         } elseif ($diff > 0 && $diff < 7) {
             return self::parse($date)->format('l');
         } elseif ($diff < 0 && $diff > -7) {
-            return 'last ' . self::parse($date)->format('l');
+            return 'last '.self::parse($date)->format('l');
         } else {
             return self::parse($date)->format($format);
         }
@@ -110,15 +111,14 @@ class Willard extends Carbon
     /**
      * Create a human readable representation of a typical "last_updated" DATETIME value.
      *
-     * @param  mixed $date
-     * @param  boolean $withTime
-     * @return string
+     * @param  mixed  $date
+     * @param  bool  $withTime
      */
     public static function lastUpdated($date, $withTime = true): string
     {
         $objDate = self::parse($date);
         $date = self::parse($objDate)->format('Y-m-d');
-        $days = self::parse(Date('Y-m-d'))->diffInDays(self::parse($date));
+        $days = self::parse(date('Y-m-d'))->diffInDays(self::parse($date));
 
         if ($days == 0) {
             $msg = 'today';
@@ -127,38 +127,38 @@ class Willard extends Carbon
         } elseif ($days > 1 && $days < 7) {
             $msg = $objDate->format('l');
         } elseif ($days >= 7 && $days < 32) {
-            $msg = $days . ' days ago';
+            $msg = $days.' days ago';
             $withTime = false;
         } elseif ($days >= 32 && $days < 365) {
-            $months = self::parse(Date('Y-m-d'))->diffInMonths($objDate);
-            $msg = $months . (($months > 1) ? ' months ' : ' month ') . 'ago';
+            $months = self::parse(date('Y-m-d'))->diffInMonths($objDate);
+            $msg = $months.(($months > 1) ? ' months ' : ' month ').'ago';
             $withTime = false;
         } else {
-            $years = self::parse(Date('Y-m-d'))->diffInYears($objDate);
-            $msg = $years . (($years > 1) ? ' years ' : ' year ') . 'ago';
+            $years = self::parse(date('Y-m-d'))->diffInYears($objDate);
+            $msg = $years.(($years > 1) ? ' years ' : ' year ').'ago';
             $withTime = false;
         }
 
-        return ($withTime) ? $msg . ' at ' . $objDate->format('g:ia') : $msg;
+        return ($withTime) ? $msg.' at '.$objDate->format('g:ia') : $msg;
     }
 
     /**
      * Create a Carbon object for 12:00am on the provided date.
      *
-     * @param  mixed $date
+     * @param  mixed  $date
      * @return Isotope
      */
     public static function midnight($date = null)
     {
         $date = $date ? Carbon::parse($date) : Carbon::now();
+
         return Carbon::createMidnightDate($date->format('Y'), $date->format('n'), $date->format('j'));
     }
 
     /**
      * Return an array of days for populating an HTML <select> element.
      *
-     * @param  string $format
-     * @return array
+     * @param  string  $format
      */
     public static function selectDays($format = '%02d'): array
     {
@@ -168,23 +168,24 @@ class Willard extends Carbon
             $label = $i;
             $days[$val] = $label;
         }
+
         return $days;
     }
 
     /**
      * Return an array of months for populating an HTML <select> element.
      *
-     * @param  string $format
-     * @return array
+     * @param  string  $format
      */
     public static function selectMonths($format = '%02d'): array
     {
         $months = [];
         for ($i = 1; $i <= 12; $i++) {
             $val = sprintf($format, $i);
-            $label = Date('F', strtotime('2000-' . $val . '-01'));
+            $label = date('F', strtotime('2000-'.$val.'-01'));
             $months[$val] = $label;
         }
+
         return $months;
     }
 
@@ -193,23 +194,23 @@ class Willard extends Carbon
      *
      * We are going to assume that the oldest person filling out your form is 120 years old.
      *
-     * @param  int $youngest
-     * @param  int $oldest
-     * @return array
+     * @param  int  $youngest
+     * @param  int  $oldest
      */
     public static function selectYears($youngest = 0, $oldest = 120): array
     {
         $years = [];
-        for ($i = Date('Y') - $youngest; $i >= Date('Y') - $oldest; $i--) {
+        for ($i = date('Y') - $youngest; $i >= date('Y') - $oldest; $i--) {
             $years[$i] = $i;
         }
+
         return $years;
     }
 
     /**
      * Helper method that determines the Sunday of the given week.
      *
-     * @param  string $date
+     * @param  string  $date
      * @return Isotope
      */
     public static function sunday($date = null)
@@ -224,13 +225,12 @@ class Willard extends Carbon
     /**
      * Return an array of Sundays for the provided year.
      *
-     * @param  int $year
-     * @return array
+     * @param  int  $year
      */
     public static function sundays($year = null): array
     {
         // determine the first sunday that is inclusive of all days in the given year
-        $year = ($year) ? (int) $year : Date('Y');
+        $year = ($year) ? (int) $year : date('Y');
         $this_sunday = static::firstSundayOfYear($year);
         if ($this_sunday->format('m-d') != '01-01') {
             $this_sunday->subDays(7);
@@ -242,16 +242,17 @@ class Willard extends Carbon
             $sundays[] = clone $this_sunday;
             $this_sunday = $this_sunday->addDays(7);
         }
+
         return $sundays;
     }
 
     /**
      * Return an array of times based upon the provided parameters.
      *
-     * @param  \Carbon\Carbon|string $start
-     * @param  \Carbon\Carbon|string $end
-     * @param  int $seconds
-     * @param  string $label_format
+     * @param  \Carbon\Carbon|string  $start
+     * @param  \Carbon\Carbon|string  $end
+     * @param  int  $seconds
+     * @param  string  $label_format
      * @return array
      */
     public static function times($start, $end, $seconds = 900, $label_format = 'g:ia')
@@ -273,15 +274,14 @@ class Willard extends Carbon
     /**
      * Convert the provided date into an array that describes the week containing the given date.
      *
-     * @param  string $date
-     * @return array
+     * @param  string  $date
      */
     public static function weekDetails($date): array
     {
         $sunday = self::sunday($date);
         $current = ($sunday->eq(self::sunday())) ? 1 : 0;
         $future = ($sunday->gt(self::now())) ? 1 : 0;
-        $past = (!$current && !$future) ? 1 : 0;
+        $past = (! $current && ! $future) ? 1 : 0;
 
         return [
             'sunday' => $sunday->format('Y-m-d'),
@@ -296,9 +296,8 @@ class Willard extends Carbon
     /**
      * Return the provided number of weekdays.
      *
-     * @param  int $num
-     * @param  mixed $start
-     * @return array
+     * @param  int  $num
+     * @param  mixed  $start
      */
     public static function weekdays($num = 1, $start = null): array
     {
@@ -306,11 +305,12 @@ class Willard extends Carbon
 
         $days = [];
         while (count($days) < $num) {
-            if (!$day->isWeekend()) {
+            if (! $day->isWeekend()) {
                 $days[] = clone $day;
             }
             $day->addWeekday();
         }
+
         return $days;
     }
 }

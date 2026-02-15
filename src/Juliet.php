@@ -26,8 +26,7 @@ class Juliet
     /**
      * Format the name in our very special and customized manner.
      *
-     * @param  string $name
-     * @return string
+     * @param  string  $name
      */
     public static function format($name): string
     {

@@ -11,7 +11,7 @@ class WillardMidnightTest extends TestCase
     public function it_calculates_midnight_when_no_date_is_provided()
     {
         $midnight = Willard::midnight();
-        $compare = Date('Y-m-d') . ' 00:00:00';
+        $compare = date('Y-m-d').' 00:00:00';
         $this->assertEquals($compare, $midnight->toDateTimeString());
     }
 
