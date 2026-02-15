@@ -67,7 +67,7 @@ class Willard extends Carbon
     public static function firstSundayOfYear($year = null)
     {
         $year = $year ? (int) $year : date('Y');
-        $sunday = Carbon::parse($year.'-01-01')->startOfWeek(Carbon::SUNDAY);
+        $sunday = Carbon::parse($year . '-01-01')->startOfWeek(Carbon::SUNDAY);
 
         return ((int) $sunday->format('Y') === $year) ? $sunday : $sunday->addDays(7);
     }
@@ -82,7 +82,7 @@ class Willard extends Carbon
     {
         $year = $year ? (int) $year : date('Y');
 
-        return Carbon::parse($year.'-01-01')->startOfWeek(Carbon::SUNDAY);
+        return Carbon::parse($year . '-01-01')->startOfWeek(Carbon::SUNDAY);
     }
 
     /**
@@ -102,7 +102,7 @@ class Willard extends Carbon
         } elseif ($diff > 0 && $diff < 7) {
             return self::parse($date)->format('l');
         } elseif ($diff < 0 && $diff > -7) {
-            return 'last '.self::parse($date)->format('l');
+            return 'last ' . self::parse($date)->format('l');
         } else {
             return self::parse($date)->format($format);
         }
@@ -127,19 +127,19 @@ class Willard extends Carbon
         } elseif ($days > 1 && $days < 7) {
             $msg = $objDate->format('l');
         } elseif ($days >= 7 && $days < 32) {
-            $msg = $days.' days ago';
+            $msg = $days . ' days ago';
             $withTime = false;
         } elseif ($days >= 32 && $days < 365) {
             $months = self::parse(date('Y-m-d'))->diffInMonths($objDate);
-            $msg = $months.(($months > 1) ? ' months ' : ' month ').'ago';
+            $msg = $months . (($months > 1) ? ' months ' : ' month ') . 'ago';
             $withTime = false;
         } else {
             $years = self::parse(date('Y-m-d'))->diffInYears($objDate);
-            $msg = $years.(($years > 1) ? ' years ' : ' year ').'ago';
+            $msg = $years . (($years > 1) ? ' years ' : ' year ') . 'ago';
             $withTime = false;
         }
 
-        return ($withTime) ? $msg.' at '.$objDate->format('g:ia') : $msg;
+        return ($withTime) ? $msg . ' at ' . $objDate->format('g:ia') : $msg;
     }
 
     /**
@@ -182,7 +182,7 @@ class Willard extends Carbon
         $months = [];
         for ($i = 1; $i <= 12; $i++) {
             $val = sprintf($format, $i);
-            $label = date('F', strtotime('2000-'.$val.'-01'));
+            $label = date('F', strtotime('2000-' . $val . '-01'));
             $months[$val] = $label;
         }
 
