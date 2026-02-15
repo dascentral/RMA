@@ -2,11 +2,12 @@
 
 use Carbon\Carbon;
 use Dascentral\Rma\Willard;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class WillardTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_calculates_the_first_sunday_of_the_year()
     {
         $sunday = Willard::firstSundayOfYear(2019);
@@ -19,7 +20,7 @@ class WillardTest extends TestCase
         $this->assertEquals('2017-01-01', $sunday->format('Y-m-d'));
     }
 
-    /** @test */
+    #[Test]
     public function it_calculates_the_first_week_of_the_year()
     {
         $sunday = Willard::firstWeekOfYear(2019);
@@ -32,7 +33,7 @@ class WillardTest extends TestCase
         $this->assertEquals('2017-01-01', $sunday->format('Y-m-d'));
     }
 
-    /** @test */
+    #[Test]
     public function it_calculates_my_version_of_diff_for_humans()
     {
         $date = Date('Y-m-d');
@@ -51,7 +52,7 @@ class WillardTest extends TestCase
         // ELSE
     }
 
-    /** @test */
+    #[Test]
     public function it_correctly_calculates_sunday()
     {
         $sunday = Carbon::now()->startOfWeek(Carbon::SUNDAY);

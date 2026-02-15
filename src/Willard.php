@@ -34,12 +34,12 @@ class Willard extends Carbon
     public static function age($date, $step = null)
     {
         if ($step === 'days') {
-            return Carbon::now()->diffInDays($date);
+            return (int) abs(Carbon::now()->diffInDays($date));
         } elseif ($step === 'months') {
-            return Carbon::now()->diffInMonths($date);
+            return (int) abs(Carbon::now()->diffInMonths($date));
         }
 
-        return Carbon::now()->diffInYears($date);
+        return (int) abs(Carbon::now()->diffInYears($date));
     }
 
     /**

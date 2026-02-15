@@ -2,11 +2,12 @@
 
 use Carbon\Carbon;
 use Dascentral\Rma\Willard;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class AgeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_accurately_calculates_age_in_years()
     {
         $expected = 40;

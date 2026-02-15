@@ -1,11 +1,12 @@
 <?php
 
 use Dascentral\Rma\Dorothy;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class DorothyTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_rounds_down_correctly()
     {
         $this->assertEquals(50, Dorothy::roundDownToNearest(50, 5));
@@ -21,7 +22,7 @@ class DorothyTest extends TestCase
         $this->assertEquals(60, Dorothy::roundDownToNearest(60, 5));
     }
 
-    /** @test */
+    #[Test]
     public function it_rounds_correctly()
     {
         $this->assertEquals(45, Dorothy::roundToNearest(45, 5));
@@ -42,7 +43,7 @@ class DorothyTest extends TestCase
         $this->assertEquals(60, Dorothy::roundToNearest(60, 5));
     }
 
-    /** @test */
+    #[Test]
     public function it_rounds_up_correctly()
     {
         $this->assertEquals(50, Dorothy::roundUpToNearest(46, 5));
