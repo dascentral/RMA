@@ -42,5 +42,8 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "format": "pint"
     }
 }
