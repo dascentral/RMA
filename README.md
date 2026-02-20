@@ -6,6 +6,11 @@ A collection of simple utilities for use within PHP-based projects.
 
 A simple PHP API extension for formatting phone numbers.
 
+Alternatives to this script that are more robust and better maintained:
+
+- [giggsey/libphonenumber-for-php](https://github.com/giggsey/libphonenumber-for-php)
+- [Propaganistas/Laravel-Phone](https://github.com/Propaganistas/Laravel-Phone)
+
 ## Willard
 
 An extension of the [Carbon](http://carbon.nesbot.com/) library that includes a few helper functions.
@@ -21,4 +26,3 @@ A simple PHP API extension for formatting names.
 A simple PHP API extension for doing math.
 
 This class is named after [Dorothy Johnson Vaughan](https://en.wikipedia.org/wiki/Dorothy_Vaughan) who was an American mathematician and human computer who worked for the National Advisory Committee for Aeronautics, and NASA, at Langley Research Center in Hampton, Virginia. Her work at NASA was celebrated within the film [Hidden Figures](https://www.imdb.com/title/tt4846340/).
-
